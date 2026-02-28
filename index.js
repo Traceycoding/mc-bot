@@ -11,7 +11,7 @@ http.createServer((req, res) => {
 }).listen(mcpport); 
 
 // YOUR ATERNOS INFO (Double-check the "Connect" button on Aternos!)
-const aternosHost = 'weeverfish.aternos.host'; 
+const aternosHost = 'tubeshoulder.aternos.host'; 
 const aternosPort = 17876; 
 
 // 2. THE AFK BOT (Stays in Minecart to keep Aternos awake)
@@ -19,7 +19,7 @@ const bot = createClient({
   host: aternosHost,
   port: aternosPort,
   auth: 'microsoft',
-  username: 'BlockBrainAIj@outlook.com', // <--- YOUR SPARE EMAIL HERE
+  username: 'BlockBrainAI@outlook.com', // <--- YOUR SPARE EMAIL HERE
   skipPing: true,
   connectTimeout: 300000, 
   profilesFolder: './controls'
