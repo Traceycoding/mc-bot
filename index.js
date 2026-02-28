@@ -1,65 +1,39 @@
 const { createClient, Relay } = require('bedrock-protocol');
 const http = require('http');
 
-// 1. SETTINGS (MUST BE AT THE TOP)
-// Double-check these on your Aternos "Connect" button!
+// 1. SETTINGS
 const aternosHost = 'borador.aternos.host'; 
 const aternosPort = 17876; 
 const mcpport = 19132;
-const spareEmail = 'BlockBrainAI@outlook.com'; // Put your bot email here!
 
 // 2. KEEP RENDER ALIVE
-http.createServer((req, res) => { 
-  res.write('Bot & Proxy Online'); 
-  res.end(); 
-}).listen(mcpport); 
+http.createServer((req, res) => { res.write('Dual Bot Online'); res.end(); }).listen(mcpport); 
 
-// 3. THE AFK BOT (Stays in Minecart)
+// 3. THE AFK BOT (Account #1 - Sits in Minecart)
 const bot = createClient({
   host: aternosHost,
   port: aternosPort,
   auth: 'microsoft',
-  username: spareEmail,
+  username: 'BlockBrainAI@outlook.com', // <--- FIRST SPARE EMAIL
   skipPing: true,
-  connectTimeout: 300000,
-  profilesFolder: './auth' // Remembers your login!
+  profilesFolder: './auth/bot' // Saves login for Bot #1
 });
 
-bot.on('spawn', () => {
-  console.log('AFK Bot has spawned in the Minecart!');
-  // Anti-AFK Swing
-  setInterval(() => { if (bot.entity) bot.swingArm(); }, 30000);
-});
+bot.on('spawn', () => console.log('AFK Bot (Account 1) is in the Minecart!'));
 
-// 4. THE TRANSFER WORLD (Friends Tab Proxy)
+// 4. THE TRANSFER WORLD (Account #2 - Shows in Friends Tab)
 const relay = new Relay({
   host: '0.0.0.0',
   port: mcpport,
   offline: false,
   auth: 'microsoft',
-  profilesFolder: './auth',
+  username: 'NGjoinbot@outlook.com', // <--- SECOND SPARE EMAIL
+  profilesFolder: './auth/proxy', // Saves login for Bot #2
   announcement: {
-    Motd: "Bot's Transfer World",
+    Motd: "Server Transfer World",
     ServerVisibility: 1 
   },
-  destination: { 
-    host: aternosHost, 
-    port: aternosPort,
-    skipPing: true,
-    connectTimeout: 300000
-  }
+  destination: { host: aternosHost, port: aternosPort, skipPing: true }
 });
 
-relay.on('connect', (player) => {
-  console.log('Player joining through the Friends Tab! Transferring...');
-});
-
-// Error handling to prevent "Application Exited Early"
-bot.on('error', (err) => console.log('Bot Error:', err));
-relay.on('error', (err) => console.log('Proxy Error:', err));
-
-// Auto-Restart if Aternos kicks the bot
-bot.on('close', () => {
-  console.log('Disconnected from Aternos. Restarting...');
-  process.exit(1);
-});
+relay.on('connect', (player) => console.log('Player transferring via Account 2!'));
