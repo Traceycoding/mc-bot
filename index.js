@@ -1,4 +1,4 @@
-const { createClient, Relay } = require('bedrock-protocol'); // THIS IS THE MISSING LINE
+const { createClient, Relay } = require('bedrock-protocol');
 const http = require('http');
 
 // ... rest of your code
