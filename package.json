@@ -1,7 +1,7 @@
 {
   "name": "mc-bot",
   "version": "1.0.0",
-  "description": "MCBE Proxy Bot",
+  "description": "MCBE Bot and Proxy",
   "main": "index.js",
   "dependencies": {
     "bedrock-protocol": "latest",
