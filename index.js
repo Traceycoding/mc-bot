@@ -1,4 +1,7 @@
-// Look for this part:
+const { createClient, Relay } = require('bedrock-protocol'); // THIS IS THE MISSING LINE
+const http = require('http');
+
+// ... rest of your code
 const bot = createClient({
   host: aternosHost,
   port: aternosPort,
