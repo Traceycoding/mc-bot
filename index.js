@@ -1,45 +1,48 @@
 const { createClient, Relay } = require('bedrock-protocol');
 const http = require('http');
 
-// 1. KEEP RENDER ALIVE (Poked by UptimeRobot)
+// 1. KEEP RENDER ALIVE
 http.createServer((req, res) => { 
-  res.write('Bot & Transfer World Online'); 
+  res.write('Bot & Proxy Online'); 
   res.end(); 
 }).listen(process.env.PORT || 8080);
 
-const host = 'weeverfish.aternos.host';
-const port = 17876;
+// CHANGE THESE to match your Aternos "Connect" info exactly!
+const aternosHost = 'weeverfish.aternos.host'; 
+const aternosPort = 17876; 
 
-// 2. THE AFK BOT (Sits in Minecart to keep Aternos awake)
+// 2. THE AFK BOT (Stays in Minecart)
 const bot = createClient({
-  host: host,
-  port: port,
+  host: aternosHost,
+  port: aternosPort,
   auth: 'microsoft',
-  username: 'BlockBrainAI@outlook.com' // CHANGE THIS to your spare account email
+  username: 'BlockBrainAI@outlook.com', // Your spare email
+  skipPing: true, // Fixes the timeout error
+  profilesFolder: './controls'
 });
 
 bot.on('spawn', () => {
-  console.log('AFK Bot has spawned in the Minecart!');
-  
-  // Anti-AFK Swing (Swings arm every 30 seconds)
-  setInterval(() => {
-    if (bot.entity) bot.swingArm();
-  }, 30000);
+  console.log('AFK Bot is in the Minecart!');
+  setInterval(() => { if (bot.entity) bot.swingArm(); }, 30000);
 });
 
-// 3. THE TRANSFER WORLD (Shows the bot in your Friends Tab)
+// 3. THE TRANSFER WORLD (Friends Tab Proxy)
 const relay = new Relay({
   host: '0.0.0.0',
   port: 19132,
   offline: false,
   auth: 'microsoft',
-  destination: { host: host, port: port }
+  destination: { 
+    host: aternosHost, 
+    port: aternosPort,
+    skipPing: true // Fixes the timeout error here too
+  }
 });
 
 relay.on('connect', (player) => {
-  console.log('You are joining through the Friends Tab! Transferring now...');
+  console.log('Player joining through the Friends Tab! Transferring...');
 });
 
-// Error handling to prevent crashes
+// Basic Error Handling
 bot.on('error', (err) => console.log('Bot Error:', err));
 relay.on('error', (err) => console.log('Proxy Error:', err));
