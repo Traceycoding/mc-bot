@@ -7,7 +7,7 @@ http.createServer((req, res) => {
   res.end(); 
 }).listen(process.env.PORT || 8080);
 
-const host = 'NehemiahGames.aternos.me';
+const host = 'weeverfish.aternos.host';
 const port = 17876;
 
 // 2. THE AFK BOT (Sits in Minecart to keep Aternos awake)
