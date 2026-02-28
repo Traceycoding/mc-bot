@@ -8,8 +8,8 @@ http.createServer((req, res) => {
 }).listen(process.env.PORT || 8080);
 
 const bot = bedrock.createClient({
-  host: 'YOUR_SERVER_IP', // Change to your server IP
-  port: 19132,            // Change if your port is different
+  host: 'NehemiahGames.aternos.me', // Change to your server IP
+  port: 17876,            // Change if your port is different
   auth: 'microsoft'       // This makes it show up in the Friends Tab
 });
 
