@@ -45,7 +45,7 @@ const relay = new Relay({
     host: aternosHost, 
     port: aternosPort,
     skipPing: true,
-    connectTimeout: 300000
+    connectTimeout: 300000k
   }
 });
 
@@ -56,3 +56,26 @@ relay.on('connect', (player) => {
 // Error handling to prevent the "Exited Early" crash
 bot.on('error', (err) => console.log('Bot Error:', err));
 relay.on('error', (err) => console.log('Proxy Error:', err));
+// 4. ADMIN COMMANDS (Only works for YOU)
+const myGamertag = 'YOUR_ACTUAL_GAMERTAG'; // Replace with your real name!
+
+bot.on('chat', (packet) => {
+  const message = packet.message;
+  const sender = packet.source_name;
+
+  if (sender === myGamertag) {
+    if (message === '!stop') {
+      bot.queue('text', { message: 'Shutting down bot. Goodbye!' });
+      setTimeout(() => { process.exit(0) }, 2000);
+    }
+    
+    if (message === '!reboot') {
+      bot.queue('text', { message: 'Rebooting systems...' });
+      setTimeout(() => { process.exit(1) }, 2000); // Render will auto-restart it
+    }
+    
+    if (message === '!status') {
+      bot.queue('text', { message: 'I am online and 24/7 thanks to Render!' });
+    }
+  }
+});
