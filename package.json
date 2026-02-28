@@ -1,0 +1,12 @@
+{
+  "name": "mc-bot",
+  "version": "1.0.0",
+  "description": "Simple MCBE Bot",
+  "main": "index.js",
+  "dependencies": {
+    "bedrock-protocol": "latest"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
