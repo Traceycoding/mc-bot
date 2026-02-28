@@ -1,7 +1,7 @@
 {
-  "name": "mc-bot",
+  "name": "mc-bot-proxy",
   "version": "1.0.0",
-  "description": "MCBE AFK Bot and Transfer World Proxy",
+  "description": "24/7 AFK Bot and Friends Tab Proxy",
   "main": "index.js",
   "dependencies": {
     "bedrock-protocol": "latest",
@@ -9,8 +9,5 @@
   },
   "scripts": {
     "start": "node index.js"
-  },
-  "engines": {
-    "node": ">=14.0.0"
   }
 }
