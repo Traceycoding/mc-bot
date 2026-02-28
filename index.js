@@ -1,21 +1,20 @@
-const bedrock = require('bedrock-protocol');
-const http = require('http');
+const { Relay } = require('bedrock-protocol')
+const http = require('http')
 
-// Keep-alive server for Render
-http.createServer((req, res) => {
-  res.write('Bot is online!');
-  res.end();
-}).listen(process.env.PORT || 8080);
+// Keep Render alive
+http.createServer((req, res) => { res.write('Proxy is Online'); res.end(); }).listen(process.env.PORT || 8080)
 
-const bot = bedrock.createClient({
-  host: 'NehemiahGames.aternos.me', // Change to your server IP
-  port: 17876,            // Change if your port is different
-  auth: 'microsoft'       // This makes it show up in the Friends Tab
-});
+const relay = new Relay({
+  host: '0.0.0.0',
+  port: 19132, // The bot's "world" port
+  offline: false,
+  auth: 'microsoft',
+  destination: {
+    host: 'NehemiahGames.aternos.me', // Your Aternos IP
+    port: 17876                       // Your Aternos Port
+  }
+})
 
-bot.on('spawn', () => {
-  console.log('Bot joined! Check the console for the Microsoft code.');
-});
-
-// Error handling so the bot doesn't crash
-bot.on('error', (err) => console.log('Error:', err));
+relay.on('connect', (player) => {
+  console.log('Player joining through the bot!')
+})
