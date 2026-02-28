@@ -3,10 +3,10 @@ const http = require('http');
 
 // 1. SETTINGS (MUST BE AT THE TOP)
 // Double-check these on your Aternos "Connect" button!
-const aternosHost = 'tubeshoulder.aternos.host'; 
+const aternosHost = 'borador.aternos.host'; 
 const aternosPort = 17876; 
 const mcpport = 19132;
-const spareEmail = 'YOUR_SPARE_EMAIL@outlook.com'; // Put your bot email here!
+const spareEmail = 'BlockBrainAI@outlook.com'; // Put your bot email here!
 
 // 2. KEEP RENDER ALIVE
 http.createServer((req, res) => { 
