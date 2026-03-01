@@ -1,8 +1,8 @@
 const { createClient } = require('bedrock-protocol');
 const http = require('http');
 
-// 1. SETTINGS
-const aternosHost = 'borador.aternos.host'; 
+// 1. SETTINGS - UPDATE THESE FROM ATERNOS "CONNECT" BUTTON
+const aternosHost = 'paddlefish.aternos.host'; 
 const aternosPort = 17876; 
 
 // Keep Render Alive
@@ -26,7 +26,6 @@ function startBot() {
 
   bot.on('error', (err) => console.log('Bot Error:', err));
   
-  // Auto-Reconnect if Aternos restarts
   bot.on('close', () => {
     console.log('Bot disconnected. Reconnecting in 10s...');
     setTimeout(startBot, 10000);
