@@ -1,8 +1,6 @@
 {
   "name": "mc-bot-proxy",
   "version": "1.0.0",
-  "description": "24/7 AFK Bot and Friends Tab Proxy",
-  "main": "index.js",
   "dependencies": {
     "bedrock-protocol": "latest",
     "minecraft-protocol": "latest"
