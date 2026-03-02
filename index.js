@@ -2,7 +2,7 @@ const { createClient } = require('bedrock-protocol');
 const http = require('http');
 
 // 1. SETTINGS - UPDATE THESE FROM ATERNOS "CONNECT" BUTTON
-const aternosHost = 'paddlefish.aternos.host'; 
+const aternosHost = 'tubeshoulder.aternos.host'; 
 const aternosPort = 17876; 
 
 // Keep Render Alive
