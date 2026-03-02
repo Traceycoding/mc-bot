@@ -2,7 +2,7 @@ const { Relay } = require('bedrock-protocol');
 const http = require('http');
 
 // 1. SETTINGS - MUST MATCH ATERNOS
-const aternosHost = 'paddlefish.aternos.host'; 
+const aternosHost = 'tubeshoulder.aternos.host'; 
 const aternosPort = 17876; 
 
 // Keep Render Alive
